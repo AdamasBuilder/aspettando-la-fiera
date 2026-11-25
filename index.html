@@ -1,256 +1,484 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A che punto siamo? - Rassegna Teatrale | Granda Connect</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>
-        :root {
-            --color-salvia: #6b8f70;
-            --color-navy: #1b244a;
-            --color-corallo: #e85d3a;
-            --color-slate-blue: #4b6280;
-        }
-        body {
-            background-color: var(--color-navy);
-            color: #ffffff;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-        .bg-navy { background-color: var(--color-navy); }
-        .bg-salvia { background-color: var(--color-salvia); }
-        .bg-corallo { background-color: var(--color-corallo); }
-        .bg-slate-blue { background-color: var(--color-slate-blue); }
-        
-        .text-salvia { color: var(--color-salvia); }
-        .text-corallo { color: var(--color-corallo); }
-        .text-slate-blue { color: var(--color-slate-blue); }
-        
-        .border-salvia { border-color: var(--color-salvia); }
-        .border-slate-blue { border-color: var(--color-slate-blue); }
-        
-        .btn-corallo {
-            background-color: var(--color-corallo);
-            color: #ffffff;
-            transition: all 0.2s ease;
-            /* tutti i bottoni identici: testo su una riga sola, centrato */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-        }
-        /* da 640px in su larghezza e altezza fisse: nessun bottone piu' alto degli altri */
-        @media (min-width: 640px) {
-            a.btn-corallo,
-            .btn-stato {
-                width: 176px;
-                height: 44px;
-                padding: 0;
-            }
-        }
-        /* "Sold out" occupa lo stesso spazio del bottone attivo, cosi' la colonna resta allineata */
-        .btn-stato {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            white-space: nowrap;
-        }
-        .btn-corallo:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aspettando la Fiera — Carrù, 10 e 13 dicembre 2026</title>
+<meta name="description" content="Tre spettacoli gratuiti a Carrù nell'attesa della 116ª Fiera Nazionale del Bue Grasso: Pierluigi Pardo il 10 dicembre, Dario Vergassola e Chiara Francini, Federico Basso il 13 dicembre. Prenota il posto online.">
+<meta name="theme-color" content="#16233F">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aspettando la Fiera — Carrù, 10 e 13 dicembre 2026">
+<meta property="og:description" content="Tre spettacoli a ingresso gratuito nell'attesa della 116ª Fiera Nazionale del Bue Grasso.">
+<meta property="og:image" content="assets/basso.jpg">
+<meta property="og:locale" content="it_IT">
+<link rel="icon" href="assets/logo-rassegna.png">
+<link rel="preload" href="assets/montserrat.woff2" as="font" type="font/woff2" crossorigin>
 
+<style>
+@font-face{
+  font-family:"Montserrat";
+  src:url("assets/montserrat.woff2") format("woff2");
+  font-weight:100 900;
+  font-style:normal;
+  font-display:swap;
+}
+
+:root{
+  --navy:#16233F;
+  --navy-deep:#101A30;
+  --navy-line:#25345A;
+  --salvia:#6B9071;
+  --salvia-light:#9DC4A2;
+  --orange:#E85D3A;
+  --orange-deep:#B84329;
+  --white:#FFFFFF;
+  --muted:#A6ABB6;
+
+  --pad:clamp(20px,5vw,28px);
+  --max:1120px;
+  --radius:20px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:var(--navy);
+  color:var(--white);
+  font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-weight:400;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.wrap{
+  width:100%;
+  max-width:var(--max);
+  margin-inline:auto;
+  padding-inline:var(--pad);
+}
+
+/* ---------- lingua comune ---------- */
+.eyebrow{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--salvia-light);
+  margin:0;
+}
+.eyebrow--fiera{color:var(--muted)}
+
+/* ---------- barra alta ---------- */
+.topbar{border-bottom:1px solid var(--navy-line);background:var(--navy-deep)}
+.topbar__in{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding-block:12px;
+}
+.topbar__label{
+  display:flex;align-items:center;gap:9px;
+  font-size:11px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--salvia);flex:none}
+.topbar__link{
+  font-size:11px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--salvia-light);white-space:nowrap;
+}
+.topbar__link:hover{color:var(--white)}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  padding-block:clamp(34px,7vw,64px) clamp(28px,5vw,48px);
+  border-bottom:1px solid var(--navy-line);
+  overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:auto -20% -55% -20%;height:70%;
+  background:radial-gradient(ellipse at 50% 0%, rgba(107,144,113,.30), transparent 62%);
+  pointer-events:none;
+}
+.hero__in{position:relative;z-index:1}
+
+.hero__logo{width:clamp(74px,17vw,104px);height:auto;margin-bottom:clamp(20px,4vw,28px);border-radius:50%}
+
+.hero__title{
+  margin:0;font-size:clamp(30px,10.1vw,84px);font-weight:900;
+  line-height:.94;letter-spacing:-.045em;text-transform:uppercase;
+}
+.hero__title span{display:block}
+.hero__title em{font-style:normal;color:var(--salvia-light)}
+
+.hero__lede{
+  margin:clamp(18px,3.5vw,26px) 0 0;max-width:46ch;
+  font-size:clamp(15px,3.9vw,18px);color:var(--muted);line-height:1.6;
+}
+.hero__lede strong{color:var(--white);font-weight:600}
+
+/* striscia dati */
+.facts{
+  display:grid;grid-template-columns:1fr;gap:1px;
+  margin-top:clamp(26px,5vw,38px);
+  border:1px solid var(--navy-line);border-radius:14px;
+  overflow:hidden;background:var(--navy-line);
+}
+.facts__item{background:var(--navy-deep);padding:14px 16px;display:flex;align-items:baseline;gap:10px}
+.facts__k{
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--salvia-light);flex:none;min-width:74px;
+}
+.facts__v{font-size:14px;font-weight:600}
+
+/* ---------- spettacoli ---------- */
+.shows{padding-block:clamp(38px,8vw,72px)}
+.shows__head{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;margin-bottom:clamp(18px,4vw,30px);
+}
+.shows__title{margin:0;font-size:clamp(22px,6vw,32px);font-weight:800;letter-spacing:-.02em}
+.shows__note{margin:0;font-size:12px;font-weight:600;color:var(--muted)}
+
+.card{
+  position:relative;display:grid;grid-template-columns:1fr;
+  background:var(--navy-deep);border:1px solid var(--navy-line);
+  border-radius:var(--radius);overflow:hidden;
+  margin-bottom:clamp(14px,3vw,18px);
+  transition:border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+.card:last-of-type{margin-bottom:0}
+.card:hover,
+.card:focus-visible{
+  border-color:var(--orange);transform:translateY(-2px);
+  box-shadow:0 18px 40px -22px rgba(0,0,0,.85);outline:none;
+}
+
+.card__media{position:relative;overflow:hidden;background:#0B1226;aspect-ratio:4/5}.card__media img{
+  width:100%;height:100%;object-fit:cover;object-position:center 22%;
+  transition:transform .5s cubic-bezier(.2,.7,.3,1);
+}
+.card:hover .card__media img{transform:scale(1.035)}
+
+.card__date{
+  position:absolute;top:14px;left:14px;background:var(--white);color:var(--navy);
+  border-radius:12px;padding:8px 11px 7px;text-align:center;line-height:1;
+  box-shadow:0 6px 18px -8px rgba(0,0,0,.6);
+}
+.card__day{display:block;font-size:26px;font-weight:900;letter-spacing:-.04em}
+.card__mon{
+  display:block;margin-top:2px;font-size:11px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--orange-deep);
+}
+
+.card__body{padding:clamp(18px,4.5vw,30px);display:flex;flex-direction:column;gap:10px}
+
+.card__when{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  font-size:12px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--salvia-light);
+}
+.card__when .sep{color:var(--navy-line)}
+
+.card__name{
+  margin:0;font-size:clamp(24px,6.6vw,34px);font-weight:900;line-height:1.02;
+  letter-spacing:-.03em;text-transform:uppercase;text-wrap:balance;
+}
+.card__sub{margin:0;font-size:clamp(15px,3.8vw,17px);font-weight:500;color:var(--muted);line-height:1.5}
+.card__sub s{opacity:1}
+.card__venue{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.card__venue b{color:var(--white);font-weight:600}
+
+.card__foot{padding-top:6px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+.badge{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid rgba(107,144,113,.55);color:var(--salvia-light);
+  border-radius:999px;padding:6px 12px 7px;
+  font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+}
+
+.cta{
+  display:inline-flex;align-items:center;gap:10px;margin-left:auto;
+  background:var(--orange);color:var(--navy-deep);border-radius:999px;
+  padding:11px 18px 12px;font-size:13px;font-weight:800;letter-spacing:.01em;
+  transition:filter .2s ease, gap .2s ease;
+}
+.card:hover .cta{filter:brightness(1.08);gap:14px}
+.cta svg{flex:none}
+
+/* ---------- la fiera ---------- */
+.fiera{
+  border-top:1px solid var(--navy-line);border-bottom:1px solid var(--navy-line);
+  background:var(--navy-deep);padding-block:clamp(38px,8vw,72px);
+}
+.fiera__grid{
+  display:grid;grid-template-columns:1fr;
+  gap:clamp(24px,5vw,40px);align-items:center;
+}
+.fiera__title{
+  margin:10px 0 0;font-size:clamp(26px,7vw,38px);font-weight:900;
+  line-height:1;letter-spacing:-.03em;text-transform:uppercase;
+}
+.fiera__title span{color:var(--salvia-light)}
+.fiera__text{margin:16px 0 0;color:var(--muted);font-size:15px;line-height:1.65;max-width:52ch}
+.fiera__text b{color:var(--white);font-weight:600}
+
+.fiera__stats{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.fiera__stats li{display:flex;gap:12px;align-items:baseline;font-size:14px;color:var(--muted)}
+.fiera__stats b{
+  color:var(--orange);font-weight:900;font-size:17px;letter-spacing:-.02em;
+  min-width:56px;flex:none;
+}
+
+.fiera__media{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--navy-line);aspect-ratio:3/2;margin:0;
+}
+.fiera__media img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04)}
+.fiera__media figcaption{
+  position:absolute;inset:auto 0 0 0;padding:14px 16px;
+  background:linear-gradient(transparent, rgba(11,18,38,.92));
+  font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--muted);
+}
+
+.link-out{
+  display:inline-flex;align-items:center;gap:8px;margin-top:22px;
+  font-size:13px;font-weight:800;color:var(--white);
+  border-bottom:2px solid var(--orange);padding-bottom:4px;
+  transition:gap .2s ease,color .2s ease;
+}
+.link-out:hover{gap:13px;color:var(--orange)}
+
+/* ---------- come funziona ---------- */
+.info{padding-block:clamp(34px,7vw,56px)}
+.info__grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:22px}
+.info__item{border-left:2px solid var(--salvia);padding:2px 0 2px 16px}
+.info__item h3{margin:0 0 4px;font-size:14px;font-weight:800;letter-spacing:.01em}
+.info__item p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--navy-line);background:var(--navy-deep);padding-block:clamp(30px,6vw,46px)}
+.foot__org{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:clamp(18px,4vw,34px);padding-bottom:26px;
+  border-bottom:1px solid var(--navy-line);
+}
+.foot__org img{height:clamp(34px,7vw,44px);width:auto;object-fit:contain;opacity:.92}
+.foot__org img.tall{height:clamp(46px,10vw,62px)}
+.foot__org a{display:block;line-height:0}
+
+.foot__meta{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
+  padding-top:22px;font-size:11.5px;color:var(--muted);line-height:1.6;
+}
+.foot__meta a{color:var(--salvia-light);font-weight:700}
+.foot__meta a:hover{color:var(--white)}
+
+/* ---------- tablet ---------- */
+@media (max-width:639px){
+  .card__foot{flex-direction:column;align-items:stretch;gap:12px}
+  .cta{margin-left:0;justify-content:center;padding-block:13px 14px;font-size:14px}
+  .badge{align-self:flex-start}
+}
+
+@media (min-width:640px){
+  .facts{grid-template-columns:repeat(3,1fr)}
+  .card{grid-template-columns:minmax(0,34%) minmax(0,1fr)}
+  .card__body{justify-content:center}
+  .info__grid{grid-template-columns:repeat(3,1fr);gap:22px}
+}
+
+/* ---------- desktop ---------- */
+@media (min-width:900px){
+  .card{grid-template-columns:minmax(0,29%) minmax(0,1fr)}
+  .fiera__grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px}
+  .card__body{padding:34px 36px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .card:hover{transform:none}
+}
+
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+</style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body>
 
-    <!-- Top Bar Partnership -->
-    <div class="bg-black/30 border-b border-slate-blue/40 py-2.5 px-6">
-        <div class="max-w-4xl mx-auto flex justify-between items-center text-xs text-slate-300">
-            <div class="flex items-center gap-2">
-                <span class="inline-block w-2 h-2 rounded-full bg-salvia animate-pulse"></span>
-                <span>Biglietteria Ufficiale in collaborazione con <strong>Granda Connect</strong></span>
-            </div>
-            <a href="https://grandaconnect.it" target="_blank" class="text-salvia hover:underline font-semibold flex items-center gap-1">
-                grandaconnect.it &rarr;
-            </a>
-        </div>
+<div class="topbar">
+  <div class="wrap topbar__in">
+    <span class="topbar__label"><span class="dot"></span>116ª Fiera Nazionale del Bue Grasso</span>
+    <a class="topbar__link" href="https://www.fieradelbuegrassodicarru.it" target="_blank" rel="noopener noreferrer">La Fiera →</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero__in">
+    <img class="hero__logo" src="assets/logo-rassegna.png" width="410" height="420" alt="Aspettando la Fiera">
+    <h1 class="hero__title"><span>Aspettando</span><em>la Fiera</em></h1>
+    <p class="hero__lede">
+      Tre spettacoli a <strong>ingresso gratuito</strong> nella settimana che precede la Fiera
+      del Bue Grasso. Pierluigi Pardo, Dario Vergassola con Chiara Francini, Federico Basso.
+      Il posto si prenota online.
+    </p>
+
+    <div class="facts">
+      <div class="facts__item"><span class="facts__k">Quando</span><span class="facts__v">10 e 13 dicembre</span></div>
+      <div class="facts__item"><span class="facts__k">Dove</span><span class="facts__v">Carrù (CN)</span></div>
+      <div class="facts__item"><span class="facts__k">Ingresso</span><span class="facts__v">Gratuito, su prenotazione</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="shows wrap" aria-labelledby="shows-title">
+    <div class="shows__head">
+      <h2 class="shows__title" id="shows-title">Tre appuntamenti</h2>
+      <p class="shows__note">Tocca la serata per prenotare</p>
     </div>
 
-    <!-- Header Principale -->
-    <header class="py-10 px-6 text-center border-b border-slate-blue/30 bg-navy">
-        <div class="max-w-4xl mx-auto flex flex-col items-center">
-            
-            <!-- Co-branding Header Badge -->
-            <div class="flex items-center justify-center gap-4 mb-6 bg-slate-blue/20 px-6 py-3 rounded-full border border-slate-blue/40">
-                <!-- SVG Icona Granda Connect -->
-                <div class="flex items-center gap-2">
-                    <svg class="w-6 h-6 text-salvia" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
-                    <span class="font-bold text-white text-sm tracking-wide">GRANDA <span class="text-salvia font-normal">CONNECT</span></span>
-                </div>
-                <span class="text-slate-blue font-bold text-xs">✕</span>
-                <span class="text-xs font-semibold text-slate-300 tracking-wider uppercase">Rassegna Teatrale</span>
-            </div>
-
-            <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-3">
-                A CHE PUNTO SIAMO?
-            </h1>
-            <p class="text-slate-300 max-w-xl text-base md:text-lg">
-                Calendario degli spettacoli e acquisto ticket gratis online per la rassegna teatrale a Carrù.
-            </p>
+    <!-- 1 · 10 dicembre -->
+    <a class="card" href="https://www.tickettailor.com/events/nicolbono/2549789" target="_blank" rel="noopener noreferrer">
+      <div class="card__media">
+        <img src="assets/pardo.jpg" width="714" height="1000" alt="Locandina: Pierluigi Pardo, Oltre il 90°">
+        <div class="card__date"><span class="card__day">10</span><span class="card__mon">Dic</span></div>
+      </div>
+      <div class="card__body">
+        <div class="card__when"><span>Giovedì</span><span class="sep">·</span><span>Ore 21:00</span></div>
+        <h3 class="card__name">Pierluigi Pardo</h3>
+        <p class="card__sub">Oltre il 90°. Quando il calcio incontra la cultura.</p>
+        <p class="card__venue"><b>Teatro Fratelli Vacchetti</b> · Via Pippo Vacchetti 10, Carrù</p>
+        <div class="card__foot">
+          <span class="badge">Ingresso gratuito</span>
+          <span class="cta">Prenota il posto
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-    </header>
+      </div>
+    </a>
 
-    <!-- Lista Eventi -->
-    <main class="max-w-4xl mx-auto px-6 py-10 flex-grow w-full">
-        <div class="flex items-center justify-between mb-8 pb-3 border-b border-slate-blue/40">
-            <h2 class="text-xl font-bold text-white tracking-wide">Spettacoli in Programma</h2>
-            <span class="text-xs text-salvia font-semibold bg-salvia/10 px-3 py-1 rounded-full border border-salvia/20">Stagione 2026</span>
+    <!-- 2 · 13 dicembre, pomeriggio -->
+    <a class="card" href="https://www.tickettailor.com/events/nicolbono/2551802" target="_blank" rel="noopener noreferrer">
+      <div class="card__media">
+        <img src="assets/francini-vergassola.jpg" width="800" height="1000" alt="Locandina: Dario Vergassola e Chiara Francini" loading="lazy">
+        <div class="card__date"><span class="card__day">13</span><span class="card__mon">Dic</span></div>
+      </div>
+      <div class="card__body">
+        <div class="card__when"><span>Domenica</span><span class="sep">·</span><span>Ore 16:00</span></div>
+        <h3 class="card__name">Vergassola &amp; Francini</h3>
+        <p class="card__sub">C'è poco da ridere: un matrimonio <s>quasi</s> impossibile.</p>
+        <p class="card__venue"><b>PalaBollito</b> · Piazza Divisione Alpina Cuneense, Carrù</p>
+        <div class="card__foot">
+          <span class="badge">Ingresso gratuito</span>
+          <span class="cta">Prenota il posto
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
+      </div>
+    </a>
 
-        <div class="space-y-4">
-
-            <!-- EVENTO 1: Nui Dui (Sold Out) -->
-            <div class="bg-slate-blue/20 border border-slate-blue/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-5 transition hover:border-slate-blue/70">
-                <div class="flex items-center gap-4 w-full sm:w-auto">
-                    <!-- Icona Evento -->
-                    <div class="w-16 h-16 rounded-full bg-black flex-shrink-0 border-2 border-corallo flex items-center justify-center p-2 text-center shadow-lg">
-                        <div class="leading-none text-[9px] font-black tracking-tighter">
-                            <span class="block text-white">A CHE</span>
-                            <span class="block text-corallo">PUNTO</span>
-                            <span class="block text-white">SIAMO<span class="text-corallo">?</span></span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-salvia uppercase tracking-wider block mb-0.5">Ven 6 Nov 2026 • 21:00 - 23:30</span>
-                        <h3 class="text-lg font-bold text-white leading-snug">SPETTACOLO "NUI DUI": PIPPO BESSONE E LUCA OCCELLI</h3>
-                    </div>
-                </div>
-                <div class="w-full sm:w-auto flex justify-end">
-                    <span class="w-full sm:w-auto text-center px-5 py-2.5 rounded-xl bg-slate-800 text-slate-400 border border-slate-700 text-sm font-bold cursor-not-allowed btn-stato">
-                        Sold out
-                    </span>
-                </div>
-            </div>
-
-            <!-- EVENTO 2: Orso Tosco -->
-            <div class="bg-slate-blue/20 border border-slate-blue/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-5 transition hover:border-salvia/50">
-                <div class="flex items-center gap-4 w-full sm:w-auto">
-                    <div class="w-16 h-16 rounded-full bg-black flex-shrink-0 border-2 border-corallo flex items-center justify-center p-2 text-center shadow-lg">
-                        <div class="leading-none text-[9px] font-black tracking-tighter">
-                            <span class="block text-white">A CHE</span>
-                            <span class="block text-corallo">PUNTO</span>
-                            <span class="block text-white">SIAMO<span class="text-corallo">?</span></span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-salvia uppercase tracking-wider block mb-0.5">Ven 13 Nov 2026 • 20:30 - 21:30</span>
-                        <h3 class="text-lg font-bold text-white leading-snug">LA PROVINCIA IN GIALLO: ORSO TOSCO A TEATRO</h3>
-                        <p class="text-xs text-slate-300 mt-1 flex items-center gap-1">
-                            <span>📍 Teatro Fratelli Vacchetti, Carrù (12061)</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="w-full sm:w-auto flex justify-end">
-                    <a href="https://www.tickettailor.com/events/nicolbono/2504770" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-6 py-2.5 rounded-xl btn-corallo text-sm font-bold shadow-md">
-                        Select tickets
-                    </a>
-                </div>
-            </div>
-
-            <!-- EVENTO 3: Paolo Roversi -->
-            <div class="bg-slate-blue/20 border border-slate-blue/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-5 transition hover:border-salvia/50">
-                <div class="flex items-center gap-4 w-full sm:w-auto">
-                    <div class="w-16 h-16 rounded-full bg-black flex-shrink-0 border-2 border-corallo flex items-center justify-center p-2 text-center shadow-lg">
-                        <div class="leading-none text-[9px] font-black tracking-tighter">
-                            <span class="block text-white">A CHE</span>
-                            <span class="block text-corallo">PUNTO</span>
-                            <span class="block text-white">SIAMO<span class="text-corallo">?</span></span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-salvia uppercase tracking-wider block mb-0.5">Ven 13 Nov 2026 • 21:30 - 22:30</span>
-                        <h3 class="text-lg font-bold text-white leading-snug">LA PROVINCIA IN GIALLO: PAOLO ROVERSI A TEATRO</h3>
-                        <p class="text-xs text-slate-300 mt-1 flex items-center gap-1">
-                            <span>📍 Teatro Fratelli Vacchetti, Carrù (12061)</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="w-full sm:w-auto flex justify-end">
-                    <a href="https://www.tickettailor.com/events/nicolbono/2504720" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-6 py-2.5 rounded-xl btn-corallo text-sm font-bold shadow-md">
-                        Select tickets
-                    </a>
-                </div>
-            </div>
-
-            <!-- EVENTO 4: Tommy Cassi e Vittorio Pettinato -->
-            <div class="bg-slate-blue/20 border border-slate-blue/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-5 transition hover:border-salvia/50">
-                <div class="flex items-center gap-4 w-full sm:w-auto">
-                    <div class="w-16 h-16 rounded-full bg-black flex-shrink-0 border-2 border-corallo flex items-center justify-center p-2 text-center shadow-lg">
-                        <div class="leading-none text-[9px] font-black tracking-tighter">
-                            <span class="block text-white">A CHE</span>
-                            <span class="block text-corallo">PUNTO</span>
-                            <span class="block text-white">SIAMO<span class="text-corallo">?</span></span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-salvia uppercase tracking-wider block mb-0.5">Ven 20 Nov 2026 • 21:00 - 23:00</span>
-                        <h3 class="text-lg font-bold text-white leading-snug">IL CORAGGIO DI ESSERE VISIBILI: TOMMY CASSI E VITTORIO PETTINATO</h3>
-                        <p class="text-xs text-slate-300 mt-1 flex items-center gap-1">
-                            <span>📍 Teatro Fratelli Vacchetti, Carrù (12061)</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="w-full sm:w-auto flex justify-end">
-                    <a href="https://www.tickettailor.com/events/nicolbono/2514017" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-6 py-2.5 rounded-xl btn-corallo text-sm font-bold shadow-md">
-                        Select tickets
-                    </a>
-                </div>
-            </div>
-
-            <!-- EVENTO 5: Pierpaolo Capovilla -->
-            <div class="bg-slate-blue/20 border border-slate-blue/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-5 transition hover:border-salvia/50">
-                <div class="flex items-center gap-4 w-full sm:w-auto">
-                    <div class="w-16 h-16 rounded-full bg-black flex-shrink-0 border-2 border-corallo flex items-center justify-center p-2 text-center shadow-lg">
-                        <div class="leading-none text-[9px] font-black tracking-tighter">
-                            <span class="block text-white">A CHE</span>
-                            <span class="block text-corallo">PUNTO</span>
-                            <span class="block text-white">SIAMO<span class="text-corallo">?</span></span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-salvia uppercase tracking-wider block mb-0.5">Sab 21 Nov 2026 • 21:00 - 23:00</span>
-                        <h3 class="text-lg font-bold text-white leading-snug">PIERPAOLO CAPOVILLA: RESTARE, PARTIRE O TORNARE? IL DILEMMA DELLA PROVINCIA</h3>
-                        <p class="text-xs text-slate-300 mt-1 flex items-center gap-1">
-                            <span>📍 Teatro Fratelli Vacchetti, Carrù (12061)</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="w-full sm:w-auto flex justify-end">
-                    <a href="https://www.tickettailor.com/events/nicolbono/2516256" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-6 py-2.5 rounded-xl btn-corallo text-sm font-bold shadow-md">
-                        Select tickets
-                    </a>
-                </div>
-            </div>
-
+    <!-- 3 · 13 dicembre, sera -->
+    <a class="card" href="https://www.tickettailor.com/events/nicolbono/2552394" target="_blank" rel="noopener noreferrer">
+      <div class="card__media">
+        <img src="assets/basso.jpg" width="494" height="628" alt="Locandina: Federico Basso, Con ironia, grazie!" loading="lazy">
+        <div class="card__date"><span class="card__day">13</span><span class="card__mon">Dic</span></div>
+      </div>
+      <div class="card__body">
+        <div class="card__when"><span>Domenica</span><span class="sep">·</span><span>Ore 21:00</span></div>
+        <h3 class="card__name">Federico Basso</h3>
+        <p class="card__sub">Con ironia, grazie! Con Roberto Pavanello.</p>
+        <p class="card__venue"><b>PalaBollito</b> · Piazza Divisione Alpina Cuneense, Carrù</p>
+        <div class="card__foot">
+          <span class="badge">Ingresso gratuito</span>
+          <span class="cta">Prenota il posto
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </span>
         </div>
-    </main>
+      </div>
+    </a>
+  </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-blue/30 py-8 px-6 bg-black/20 text-center text-xs text-slate-400">
-        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div>
-                <p class="font-semibold text-slate-300">Rassegna Teatrale "A che punto siamo?"</p>
-                <p class="text-slate-400 mt-0.5">Gestione biglietti diretta su Ticket Tailor</p>
-            </div>
-            <div class="flex items-center gap-2 bg-slate-blue/20 px-4 py-2 rounded-xl border border-slate-blue/30">
-                <span>Promosso da</span>
-                <a href="https://grandaconnect.it" target="_blank" class="text-salvia font-bold hover:underline">Granda Connect</a>
-            </div>
-        </div>
-    </footer>
+  <section class="fiera" aria-labelledby="fiera-title">
+    <div class="wrap fiera__grid">
+      <div>
+        <p class="eyebrow eyebrow--fiera">Quella che aspettiamo</p>
+        <h2 class="fiera__title" id="fiera-title">La 116ª Fiera del <span>Bue Grasso</span></h2>
+        <p class="fiera__text">
+          Ogni anno, dal 1910, Carrù raduna allevatori e pubblico intorno al bue di razza
+          piemontese: la mostra zootecnica al foro boario, il <b>Bue d'Oro</b>, il gran galà
+          del bollito. È la festa che tiene insieme un paese e la sua terra.
+        </p>
+        <ul class="fiera__stats">
+          <li><b>116ª</b><span>edizione</span></li>
+          <li><b>1910</b><span>la prima fiera del bue grasso, il 15 dicembre</span></li>
+          <li><b>1473</b><span>i mercati di bestiame a Carrù, già nel Medioevo</span></li>
+          <li><b>17 dic</b><span>la Fiera 2026, giovedì</span></li>
+        </ul>
+        <a class="link-out" href="https://www.fieradelbuegrassodicarru.it" target="_blank" rel="noopener noreferrer">
+          Programma completo della Fiera
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <figure class="fiera__media">
+        <img src="assets/bue.jpg" width="1105" height="728" alt="Un bue di razza piemontese alla Fiera del Bue Grasso di Carrù" loading="lazy">
+        <figcaption>Il bue grasso di razza piemontese, il protagonista della Fiera.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="info wrap" aria-labelledby="info-title">
+    <p class="eyebrow">Prima di venire</p>
+    <h2 class="shows__title" id="info-title">Come funziona</h2>
+    <div class="info__grid">
+      <div class="info__item">
+        <h3>Ingresso gratuito</h3>
+        <p>Tutti e tre gli spettacoli sono gratuiti. La gratuità è una scelta: la rassegna deve essere accessibile a tutti.</p>
+      </div>
+      <div class="info__item">
+        <h3>Posto su prenotazione</h3>
+        <p>I posti sono limitati: si prenota online con il bottone della serata. La prenotazione è gratuita e vale come biglietto.</p>
+      </div>
+      <div class="info__item">
+        <h3>Dove siamo</h3>
+        <p>Il 10 dicembre al Teatro Fratelli Vacchetti, il 13 dicembre al PalaBollito, in Piazza Divisione Alpina Cuneense.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__org">
+      <a href="https://www.comune.carru.cn.it" target="_blank" rel="noopener noreferrer" title="Comune di Carrù">
+        <img class="tall" src="assets/stemma-carru.png" width="256" height="320" alt="Comune di Carrù">
+      </a>
+      <a href="https://www.fieradelbuegrassodicarru.it" target="_blank" rel="noopener noreferrer" title="Fiera del Bue Grasso di Carrù">
+        <img class="tall" src="assets/fiera_LOGO-fiera-big.jpg" width="236" height="292" alt="Fiera del Bue Grasso di Carrù">
+      </a>
+      <a href="https://boccequadre.it" target="_blank" rel="noopener noreferrer" title="Associazione Bocce Quadre di Mondovì">
+        <img src="assets/bocce-quadre.png" alt="Associazione Bocce Quadre di Mondovì">
+      </a>
+    </div>
+    <div class="foot__meta">
+      <span>Un'iniziativa del Comune di Carrù con l'Associazione Bocce Quadre di Mondovì.<br>Biglietteria e comunicazione a cura di <a href="https://grandaconnect.it" target="_blank" rel="noopener noreferrer">Granda Connect</a>.</span>
+      <span>Aspettando la Fiera · dicembre 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Event","name":"Pierluigi Pardo: Oltre il 90°","startDate":"2026-12-10T21:00:00+01:00","endDate":"2026-12-10T23:00:00+01:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"Teatro Fratelli Vacchetti","address":{"@type":"PostalAddress","streetAddress":"Via Pippo Vacchetti 10","postalCode":"12061","addressLocality":"Carrù","addressRegion":"CN","addressCountry":"IT"}},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://www.tickettailor.com/events/nicolbono/2549789"}},
+{"@type":"Event","name":"Dario Vergassola e Chiara Francini: C'è poco da ridere","startDate":"2026-12-13T16:00:00+01:00","endDate":"2026-12-13T18:00:00+01:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"PalaBollito","address":{"@type":"PostalAddress","streetAddress":"Piazza Divisione Alpina Cuneense","postalCode":"12061","addressLocality":"Carrù","addressRegion":"CN","addressCountry":"IT"}},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://www.tickettailor.com/events/nicolbono/2551802"}},
+{"@type":"Event","name":"Federico Basso: Con ironia, grazie!","startDate":"2026-12-13T21:00:00+01:00","endDate":"2026-12-13T23:00:00+01:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"PalaBollito","address":{"@type":"PostalAddress","streetAddress":"Piazza Divisione Alpina Cuneense","postalCode":"12061","addressLocality":"Carrù","addressRegion":"CN","addressCountry":"IT"}},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://www.tickettailor.com/events/nicolbono/2552394"}}
+]}
+</script>
 
 </body>
 </html>
+
