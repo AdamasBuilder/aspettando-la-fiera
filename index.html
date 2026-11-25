@@ -9,9 +9,9 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Aspettando la Fiera — Carrù, 10 e 13 dicembre 2026">
 <meta property="og:description" content="Tre spettacoli a ingresso gratuito nell'attesa della 116ª Fiera Nazionale del Bue Grasso.">
-<meta property="og:image" content="assets/basso.jpg">
+<meta property="og:image" content="assets/pardo.jpg">
 <meta property="og:locale" content="it_IT">
-<link rel="icon" href="assets/logo-rassegna.png">
+<link rel="icon" href="assets/favicon.png">
 <link rel="preload" href="assets/montserrat.woff2" as="font" type="font/woff2" crossorigin>
 
 <style>
@@ -106,7 +106,16 @@ a{color:inherit;text-decoration:none}
 }
 .hero__in{position:relative;z-index:1}
 
-.hero__logo{width:clamp(74px,17vw,104px);height:auto;margin-bottom:clamp(20px,4vw,28px);border-radius:50%}
+/* lockup: Granda Connect, Media Agency Partner */
+.hero__lockup{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-bottom:clamp(22px,4.5vw,30px);
+}
+.hero__lockup img{height:clamp(29px,7.4vw,38px);width:auto}
+.hero__lockup span{
+  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);border-left:1px solid var(--navy-line);padding-left:12px;
+}
 
 .hero__title{
   margin:0;font-size:clamp(30px,10.1vw,84px);font-weight:900;
@@ -261,6 +270,37 @@ a{color:inherit;text-decoration:none}
 .info__item h3{margin:0 0 4px;font-size:14px;font-weight:800;letter-spacing:.01em}
 .info__item p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
 
+/* ---------- partner ---------- */
+.partner{
+  border-top:1px solid var(--navy-line);
+  background:var(--navy);
+  padding-block:clamp(44px,9vw,80px);
+  text-align:center;
+}
+.partner__in{display:flex;flex-direction:column;align-items:center}
+.partner__logo{
+  width:clamp(228px,56vw,470px);
+  height:auto;
+  margin:clamp(14px,3vw,20px) 0 clamp(10px,2.4vw,14px);
+}
+.partner__claim{
+  margin:0;
+  font-size:clamp(15px,3.9vw,19px);
+  font-weight:600;
+  color:var(--white);
+  max-width:36ch;
+  line-height:1.45;
+}
+.partner__claim b{font-weight:800;color:var(--salvia-light)}
+.partner__text{
+  margin:clamp(10px,2.4vw,14px) 0 0;
+  font-size:13.5px;
+  color:var(--muted);
+  max-width:54ch;
+  line-height:1.6;
+}
+.partner .link-out{margin-top:clamp(18px,3.5vw,24px)}
+
 /* ---------- footer ---------- */
 .foot{border-top:1px solid var(--navy-line);background:var(--navy-deep);padding-block:clamp(30px,6vw,46px)}
 .foot__org{
@@ -326,7 +366,10 @@ a{color:inherit;text-decoration:none}
 
 <header class="hero">
   <div class="wrap hero__in">
-    <img class="hero__logo" src="assets/logo-rassegna.png" width="410" height="420" alt="Aspettando la Fiera">
+    <div class="hero__lockup">
+      <img src="assets/granda-connect.png" width="1400" height="548" alt="Granda Connect">
+      <span>Media Agency Partner</span>
+    </div>
     <h1 class="hero__title"><span>Aspettando</span><em>la Fiera</em></h1>
     <p class="hero__lede">
       Tre spettacoli a <strong>ingresso gratuito</strong> nella settimana che precede la Fiera
@@ -456,6 +499,24 @@ a{color:inherit;text-decoration:none}
       </div>
     </div>
   </section>
+
+  <section class="partner" aria-labelledby="partner-title">
+    <div class="wrap partner__in">
+      <p class="eyebrow">Partner della rassegna</p>
+      <img class="partner__logo" src="assets/granda-connect.png" width="1400" height="548" alt="Granda Connect">
+      <h2 class="partner__claim" id="partner-title">
+        Media Agency Partner di <b>Aspettando la Fiera</b>
+      </h2>
+      <p class="partner__text">
+        Granda Connect firma biglietteria e comunicazione della nuova rassegna del Comune di
+        Carrù: tre appuntamenti, 10 e 13 dicembre 2026, tutti a ingresso gratuito.
+      </p>
+      <a class="link-out" href="https://grandaconnect.it" target="_blank" rel="noopener noreferrer">
+        grandaconnect.it
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
 </main>
 
 <footer class="foot">
@@ -472,7 +533,7 @@ a{color:inherit;text-decoration:none}
       </a>
     </div>
     <div class="foot__meta">
-      <span>Un'iniziativa del Comune di Carrù con l'Associazione Bocce Quadre di Mondovì.<br>Biglietteria e comunicazione a cura di <a href="https://grandaconnect.it" target="_blank" rel="noopener noreferrer">Granda Connect</a>.</span>
+      <span>Un'iniziativa del Comune di Carrù<br>con l'Associazione Bocce Quadre di Mondovì.</span>
       <span>Aspettando la Fiera · dicembre 2026</span>
     </div>
   </div>
@@ -488,4 +549,6 @@ a{color:inherit;text-decoration:none}
 
 </body>
 </html>
+
+
 
