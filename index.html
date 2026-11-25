@@ -30,6 +30,7 @@
   --salvia:#6B9071;
   --salvia-light:#9DC4A2;
   --orange:#E85D3A;
+  --orange-btn:#D2451F;
   --orange-deep:#B84329;
   --white:#FFFFFF;
   --muted:#A6ABB6;
@@ -91,6 +92,16 @@ a{color:inherit;text-decoration:none}
   text-transform:uppercase;color:var(--salvia-light);white-space:nowrap;
 }
 .topbar__link:hover{color:var(--white)}
+.topbar__cta{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--orange-btn);color:#fff;
+  border-radius:999px;padding:7px 14px 8px;
+  font-size:11.5px;font-weight:800;letter-spacing:.03em;
+  white-space:nowrap;flex:none;
+  transition:filter .2s ease;
+}
+.topbar__cta:hover{filter:brightness(1.08)}
+.topbar__cta svg{flex:none}
 
 /* ---------- hero ---------- */
 .hero{
@@ -98,6 +109,7 @@ a{color:inherit;text-decoration:none}
   padding-block:clamp(34px,7vw,64px) clamp(28px,5vw,48px);
   border-bottom:1px solid var(--navy-line);
   overflow:hidden;
+  text-align:center;
 }
 .hero::after{
   content:"";position:absolute;inset:auto -20% -55% -20%;height:70%;
@@ -106,26 +118,29 @@ a{color:inherit;text-decoration:none}
 }
 .hero__in{position:relative;z-index:1}
 
-/* lockup: Granda Connect, Media Agency Partner */
-.hero__lockup{
-  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-  margin-bottom:clamp(22px,4.5vw,30px);
+/* lockup partner: Granda Connect × Aspettando la Fiera, stessa riga */
+.lockup{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(9px,2.2vw,18px);
+  flex-wrap:nowrap;
+  margin-bottom:clamp(20px,4.5vw,30px);
 }
-.hero__lockup img{height:clamp(29px,7.4vw,38px);width:auto}
-.hero__lockup span{
-  font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);border-left:1px solid var(--navy-line);padding-left:12px;
+.lockup__logo{height:clamp(38px,10vw,60px);width:auto;flex:none}
+.lockup__x{
+  font-size:clamp(15px,3.4vw,23px);font-weight:300;line-height:1;
+  color:var(--muted);flex:none;transform:translateY(-3px);
 }
 
-.hero__title{
-  margin:0;font-size:clamp(30px,10.1vw,84px);font-weight:900;
-  line-height:.94;letter-spacing:-.045em;text-transform:uppercase;
+.lockup__name{
+  margin:0;font-size:clamp(21px,5.9vw,48px);font-weight:900;
+  line-height:.96;letter-spacing:-.035em;text-transform:uppercase;
+  text-align:left;
 }
-.hero__title span{display:block}
-.hero__title em{font-style:normal;color:var(--salvia-light)}
+.lockup__name span{display:block}
+.lockup__name em{font-style:normal;color:var(--salvia-light)}
 
 .hero__lede{
-  margin:clamp(18px,3.5vw,26px) 0 0;max-width:46ch;
+  margin:clamp(18px,3.5vw,26px) auto 0;max-width:46ch;
   font-size:clamp(15px,3.9vw,18px);color:var(--muted);line-height:1.6;
 }
 .hero__lede strong{color:var(--white);font-weight:600}
@@ -213,7 +228,7 @@ a{color:inherit;text-decoration:none}
 
 .cta{
   display:inline-flex;align-items:center;gap:10px;margin-left:auto;
-  background:var(--orange);color:var(--navy-deep);border-radius:999px;
+  background:var(--orange-btn);color:#fff;border-radius:999px;
   padding:11px 18px 12px;font-size:13px;font-weight:800;letter-spacing:.01em;
   transition:filter .2s ease, gap .2s ease;
 }
@@ -301,6 +316,24 @@ a{color:inherit;text-decoration:none}
 }
 .partner .link-out{margin-top:clamp(18px,3.5vw,24px)}
 
+.stores{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:10px;width:100%;max-width:520px;
+  margin-top:clamp(20px,4vw,26px);
+}
+.store{
+  flex:1 1 190px;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--orange-btn);color:#fff;
+  border-radius:14px;padding:13px 18px 14px;
+  font-size:14px;font-weight:800;
+  transition:filter .2s ease,transform .2s ease;
+}
+.store:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.store svg{flex:none}
+.store small{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.92}
+.store span{display:block;line-height:1.18;text-align:center}
+
 /* ---------- footer ---------- */
 .foot{border-top:1px solid var(--navy-line);background:var(--navy-deep);padding-block:clamp(30px,6vw,46px)}
 .foot__org{
@@ -360,17 +393,20 @@ a{color:inherit;text-decoration:none}
 <div class="topbar">
   <div class="wrap topbar__in">
     <span class="topbar__label"><span class="dot"></span>116ª Fiera Nazionale del Bue Grasso</span>
-    <a class="topbar__link" href="https://www.fieradelbuegrassodicarru.it" target="_blank" rel="noopener noreferrer">La Fiera →</a>
+    <a class="topbar__cta" href="#scarica">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M6 11l6 6 6-6M5 20h14"/></svg>
+      Scarica l'app
+    </a>
   </div>
 </div>
 
 <header class="hero">
   <div class="wrap hero__in">
-    <div class="hero__lockup">
-      <img src="assets/granda-connect.png" width="1400" height="548" alt="Granda Connect">
-      <span>Media Agency Partner</span>
+    <div class="lockup">
+      <img class="lockup__logo" src="assets/granda-connect.png" width="1400" height="548" alt="Granda Connect">
+      <span class="lockup__x" aria-hidden="true">×</span>
+      <h1 class="lockup__name"><span>Aspettando</span><em>la Fiera</em></h1>
     </div>
-    <h1 class="hero__title"><span>Aspettando</span><em>la Fiera</em></h1>
     <p class="hero__lede">
       Tre spettacoli a <strong>ingresso gratuito</strong> nella settimana che precede la Fiera
       del Bue Grasso. Pierluigi Pardo, Dario Vergassola con Chiara Francini, Federico Basso.
@@ -508,9 +544,20 @@ a{color:inherit;text-decoration:none}
         Media Agency Partner di <b>Aspettando la Fiera</b>
       </h2>
       <p class="partner__text">
-        Granda Connect firma biglietteria e comunicazione della nuova rassegna del Comune di
-        Carrù: tre appuntamenti, 10 e 13 dicembre 2026, tutti a ingresso gratuito.
+        Granda Connect cura la comunicazione della nuova rassegna del Comune di Carrù.
+        I tre appuntamenti sono dentro l'applicazione: scaricala e hai il calendario,
+        i promemoria e le novità dei giorni prima della Fiera.
       </p>
+      <div class="stores">
+        <a class="store" href="https://apps.apple.com/it/app/granda-connect/id6809759378" target="_blank" rel="noopener noreferrer">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M6 11l6 6 6-6M5 20h14"/></svg>
+          <span><small>iPhone</small>Scarica su App Store</span>
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=it.grandaconnect.app" target="_blank" rel="noopener noreferrer">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M6 11l6 6 6-6M5 20h14"/></svg>
+          <span><small>Android</small>Scarica su Google Play</span>
+        </a>
+      </div>
       <a class="link-out" href="https://grandaconnect.it" target="_blank" rel="noopener noreferrer">
         grandaconnect.it
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
@@ -534,7 +581,7 @@ a{color:inherit;text-decoration:none}
     </div>
     <div class="foot__meta">
       <span>Un'iniziativa del Comune di Carrù<br>con l'Associazione Bocce Quadre di Mondovì.</span>
-      <span>Aspettando la Fiera · dicembre 2026</span>
+      <span><a href="#scarica">Scarica l'app Granda Connect</a> per restare aggiornato<br>Aspettando la Fiera · dicembre 2026</span>
     </div>
   </div>
 </footer>
