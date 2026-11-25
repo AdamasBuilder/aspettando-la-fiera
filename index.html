@@ -393,7 +393,7 @@ a{color:inherit;text-decoration:none}
 <div class="topbar">
   <div class="wrap topbar__in">
     <span class="topbar__label"><span class="dot"></span>116ª Fiera Nazionale del Bue Grasso</span>
-    <a class="topbar__cta" href="#scarica">
+    <a class="topbar__cta" data-track="app:top" href="#scarica">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M6 11l6 6 6-6M5 20h14"/></svg>
       Scarica l'app
     </a>
@@ -429,7 +429,7 @@ a{color:inherit;text-decoration:none}
     </div>
 
     <!-- 1 · 10 dicembre -->
-    <a class="card" href="https://www.tickettailor.com/events/nicolbono/2549789" target="_blank" rel="noopener noreferrer">
+    <a class="card" data-track="ticket:pardo" href="https://www.tickettailor.com/events/nicolbono/2549789" target="_blank" rel="noopener noreferrer">
       <div class="card__media">
         <img src="assets/pardo.jpg" width="714" height="1000" alt="Locandina: Pierluigi Pardo, Oltre il 90°">
         <div class="card__date"><span class="card__day">10</span><span class="card__mon">Dic</span></div>
@@ -449,7 +449,7 @@ a{color:inherit;text-decoration:none}
     </a>
 
     <!-- 2 · 13 dicembre, pomeriggio -->
-    <a class="card" href="https://www.tickettailor.com/events/nicolbono/2551802" target="_blank" rel="noopener noreferrer">
+    <a class="card" data-track="ticket:francini-vergassola" href="https://www.tickettailor.com/events/nicolbono/2551802" target="_blank" rel="noopener noreferrer">
       <div class="card__media">
         <img src="assets/francini-vergassola.jpg" width="800" height="1000" alt="Locandina: Dario Vergassola e Chiara Francini" loading="lazy">
         <div class="card__date"><span class="card__day">13</span><span class="card__mon">Dic</span></div>
@@ -469,7 +469,7 @@ a{color:inherit;text-decoration:none}
     </a>
 
     <!-- 3 · 13 dicembre, sera -->
-    <a class="card" href="https://www.tickettailor.com/events/nicolbono/2552394" target="_blank" rel="noopener noreferrer">
+    <a class="card" data-track="ticket:basso" href="https://www.tickettailor.com/events/nicolbono/2552394" target="_blank" rel="noopener noreferrer">
       <div class="card__media">
         <img src="assets/basso.jpg" width="494" height="628" alt="Locandina: Federico Basso, Con ironia, grazie!" loading="lazy">
         <div class="card__date"><span class="card__day">13</span><span class="card__mon">Dic</span></div>
@@ -549,11 +549,11 @@ a{color:inherit;text-decoration:none}
         i promemoria e le novità dei giorni prima della Fiera.
       </p>
       <div class="stores">
-        <a class="store" href="https://apps.apple.com/it/app/granda-connect/id6809759378" target="_blank" rel="noopener noreferrer">
+        <a class="store" data-track="app:ios" href="https://apps.apple.com/it/app/granda-connect/id6809759378" target="_blank" rel="noopener noreferrer">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M6 11l6 6 6-6M5 20h14"/></svg>
           <span><small>iPhone</small>Scarica su App Store</span>
         </a>
-        <a class="store" href="https://play.google.com/store/apps/details?id=it.grandaconnect.app" target="_blank" rel="noopener noreferrer">
+        <a class="store" data-track="app:android" href="https://play.google.com/store/apps/details?id=it.grandaconnect.app" target="_blank" rel="noopener noreferrer">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M6 11l6 6 6-6M5 20h14"/></svg>
           <span><small>Android</small>Scarica su Google Play</span>
         </a>
@@ -592,6 +592,35 @@ a{color:inherit;text-decoration:none}
 {"@type":"Event","name":"Dario Vergassola e Chiara Francini: C'è poco da ridere","startDate":"2026-12-13T16:00:00+01:00","endDate":"2026-12-13T18:00:00+01:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"PalaBollito","address":{"@type":"PostalAddress","streetAddress":"Piazza Divisione Alpina Cuneense","postalCode":"12061","addressLocality":"Carrù","addressRegion":"CN","addressCountry":"IT"}},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://www.tickettailor.com/events/nicolbono/2551802"}},
 {"@type":"Event","name":"Federico Basso: Con ironia, grazie!","startDate":"2026-12-13T21:00:00+01:00","endDate":"2026-12-13T23:00:00+01:00","eventStatus":"https://schema.org/EventScheduled","location":{"@type":"Place","name":"PalaBollito","address":{"@type":"PostalAddress","streetAddress":"Piazza Divisione Alpina Cuneense","postalCode":"12061","addressLocality":"Carrù","addressRegion":"CN","addressCountry":"IT"}},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://www.tickettailor.com/events/nicolbono/2552394"}}
 ]}
+</script>
+
+<!-- Click: biglietti e download dell'app. Solo INSERT anonimo, nessuna lettura. -->
+<script>
+(function () {
+  var URL = "https://gxxgmbnvdcsaxbczlygx.supabase.co/rest/v1/rs_clicks";
+  var KEY = "sb_publishable_T48B1BLFxkMbcUdvbcwrWA_ss3jookE";
+  function invia(evento, rif) {
+    try {
+      fetch(URL, {
+        method: "POST",
+        keepalive: true,
+        headers: {
+          "apikey": KEY,
+          "Authorization": "Bearer " + KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({ evento: evento, rif: rif })
+      }).catch(function () {});
+    } catch (e) {}
+  }
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest ? ev.target.closest("a[data-track]") : null;
+    if (!a) return;
+    var p = (a.getAttribute("data-track") || "").split(":");
+    if (p.length === 2 && p[0] && p[1]) invia(p[0], p[1]);
+  }, true);
+})();
 </script>
 
 </body>
